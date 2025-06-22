@@ -32,7 +32,7 @@ export function VeterinaryCard({ veterinary }: { veterinary: Veterinary }) {
             <div
                 className="flex flex-col items-center gap-4"
             >
-                <Image src={'/veterinary.jpg'} alt="veterinary" className="size-28 rounded-full" width={500} height={500} />
+                <Image src={'/Veterinary.jpg'} alt="veterinary" className="size-28 rounded-full" width={500} height={500} />
                 <h1
                     className="text-title-large "
                 >
