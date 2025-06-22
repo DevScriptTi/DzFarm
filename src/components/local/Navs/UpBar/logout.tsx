@@ -12,7 +12,7 @@ export default function Logout() {
         setloginout(true);
         await logout();
         
-        window.location.href = `${locale}/`;
+        window.location.href = `/${locale}/`;
     };
     const t = useTranslations('HomePage.UpBar');
     return (
