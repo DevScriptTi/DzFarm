@@ -5,7 +5,7 @@ import type { NextRequest } from 'next/server';
 import { isAuth } from './lib/server/tools/auth';
 
 // Define protected and public routes
-const protectedRoutes = ['/dashboard', '/logout'];
+const protectedRoutes = ['/logout'];
 const publicRoutes = ['/login', '/register'];
 
 export async function middleware(request: NextRequest) {
