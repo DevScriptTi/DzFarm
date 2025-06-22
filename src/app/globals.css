@@ -1,0 +1,199 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-cairo: 'Cairo', sans-serif;
+  }
+
+  html {
+    font-family: var(--font-cairo);
+  }
+}
+
+@theme {
+  /* spacing */
+  --spacing-header: 4rem;
+
+  /* Font Family */
+  --font-family: var(--font-cairo), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+  --color-primary: rgb(60 104 57);
+  --color-surface-tint: rgb(60 104 57);
+  --color-on-primary: rgb(255 255 255);
+  --color-primary-container: rgb(189 240 179);
+  --color-on-primary-container: rgb(36 80 35);
+  --color-secondary: rgb(83 99 79);
+  --color-on-secondary: rgb(255 255 255);
+  --color-secondary-container: rgb(214 232 206);
+  --color-on-secondary-container: rgb(59 75 56);
+  --color-tertiary: rgb(56 101 106);
+  --color-on-tertiary: rgb(255 255 255);
+  --color-tertiary-container: rgb(188 235 240);
+  --color-on-tertiary-container: rgb(30 77 82);
+  --color-error: rgb(186 26 26);
+  --color-on-error: rgb(255 255 255);
+  --color-error-container: rgb(255 218 214);
+  --color-on-error-container: rgb(147 0 10);
+  --color-background: rgb(247 251 241);
+  --color-on-background: rgb(25 29 23);
+  --color-surface: rgb(247 251 241);
+  --color-on-surface: rgb(25 29 23);
+  --color-surface-variant: rgb(222 229 216);
+  --color-on-surface-variant: rgb(66 73 64);
+  --color-outline: rgb(115 121 111);
+  --color-outline-variant: rgb(194 200 189);
+  --color-shadow: rgb(0 0 0);
+  --color-scrim: rgb(0 0 0);
+  --color-inverse-surface: rgb(45 50 43);
+  --color-inverse-on-surface: rgb(239 242 233);
+  --color-inverse-primary: rgb(162 211 153);
+  --color-primary-fixed: rgb(189 240 179);
+  --color-on-primary-fixed: rgb(0 34 3);
+  --color-primary-fixed-dim: rgb(162 211 153);
+  --color-on-primary-fixed-variant: rgb(36 80 35);
+  --color-secondary-fixed: rgb(214 232 206);
+  --color-on-secondary-fixed: rgb(17 31 15);
+  --color-secondary-fixed-dim: rgb(186 204 179);
+  --color-on-secondary-fixed-variant: rgb(59 75 56);
+  --color-tertiary-fixed: rgb(188 235 240);
+  --color-on-tertiary-fixed: rgb(0 32 34);
+  --color-tertiary-fixed-dim: rgb(160 207 212);
+  --color-on-tertiary-fixed-variant: rgb(30 77 82);
+  --color-surface-dim: rgb(216 219 210);
+  --color-surface-bright: rgb(247 251 241);
+  --color-surface-container-lowest: rgb(255 255 255);
+  --color-surface-container-low: rgb(241 245 235);
+  --color-surface-container: rgb(236 239 230);
+  --color-surface-container-high: rgb(230 233 224);
+  --color-surface-container-highest: rgb(224 228 218);
+  --color-dark-primary: rgb(162 211 153);
+  --color-dark-surface-tint: rgb(162 211 153);
+  --color-dark-on-primary: rgb(12 57 14);
+  --color-dark-primary-container: rgb(36 80 35);
+  --color-dark-on-primary-container: rgb(189 240 179);
+  --color-dark-secondary: rgb(186 204 179);
+  --color-dark-on-secondary: rgb(37 52 35);
+  --color-dark-secondary-container: rgb(59 75 56);
+  --color-dark-on-secondary-container: rgb(214 232 206);
+  --color-dark-tertiary: rgb(160 207 212);
+  --color-dark-on-tertiary: rgb(0 54 59);
+  --color-dark-tertiary-container: rgb(30 77 82);
+  --color-dark-on-tertiary-container: rgb(188 235 240);
+  --color-dark-error: rgb(255 180 171);
+  --color-dark-on-error: rgb(105 0 5);
+  --color-dark-error-container: rgb(147 0 10);
+  --color-dark-on-error-container: rgb(255 218 214);
+  --color-dark-background: rgb(16 20 15);
+  --color-dark-on-background: rgb(224 228 218);
+  --color-dark-surface: rgb(16 20 15);
+  --color-dark-on-surface: rgb(224 228 218);
+  --color-dark-surface-variant: rgb(66 73 64);
+  --color-dark-on-surface-variant: rgb(194 200 189);
+  --color-dark-outline: rgb(140 147 136);
+  --color-dark-outline-variant: rgb(66 73 64);
+  --color-dark-shadow: rgb(0 0 0);
+  --color-dark-scrim: rgb(0 0 0);
+  --color-dark-inverse-surface: rgb(224 228 218);
+  --color-dark-inverse-on-surface: rgb(45 50 43);
+  --color-dark-inverse-primary: rgb(60 104 57);
+  --color-dark-primary-fixed: rgb(189 240 179);
+  --color-dark-on-primary-fixed: rgb(0 34 3);
+  --color-dark-primary-fixed-dim: rgb(162 211 153);
+  --color-dark-on-primary-fixed-variant: rgb(36 80 35);
+  --color-dark-secondary-fixed: rgb(214 232 206);
+  --color-dark-on-secondary-fixed: rgb(17 31 15);
+  --color-dark-secondary-fixed-dim: rgb(186 204 179);
+  --color-dark-on-secondary-fixed-variant: rgb(59 75 56);
+  --color-dark-tertiary-fixed: rgb(188 235 240);
+  --color-dark-on-tertiary-fixed: rgb(0 32 34);
+  --color-dark-tertiary-fixed-dim: rgb(160 207 212);
+  --color-dark-on-tertiary-fixed-variant: rgb(30 77 82);
+  --color-dark-surface-dim: rgb(16 20 15);
+  --color-dark-surface-bright: rgb(54 58 52);
+  --color-dark-surface-container-lowest: rgb(11 15 10);
+  --color-dark-surface-container-low: rgb(25 29 23);
+  --color-dark-surface-container: rgb(29 33 27);
+  --color-dark-surface-container-high: rgb(39 43 37);
+  --color-dark-surface-container-highest: rgb(50 54 48);
+  /* Display */
+  --text-display-large: 4.1rem;
+  --text-display-large--line-height: 5.2rem;
+  --text-display-large--letter-spacing: -0.02em;
+  --text-display-large--font-weight: 400;
+
+  --text-display-medium: 3.2rem;
+  --text-display-medium--line-height: 4rem;
+  --text-display-medium--letter-spacing: 0em;
+  --text-display-medium--font-weight: 400;
+
+  --text-display-small: 2.8rem;
+  --text-display-small--line-height: 3.6rem;
+  --text-display-small--letter-spacing: 0em;
+  --text-display-small--font-weight: 400;
+
+  /* Headline */
+  --text-headline-large: 2.4rem;
+  --text-headline-large--line-height: 3.2rem;
+  --text-headline-large--letter-spacing: 0em;
+  --text-headline-large--font-weight: 400;
+
+  --text-headline-medium: 2rem;
+  --text-headline-medium--line-height: 2.8rem;
+  --text-headline-medium--letter-spacing: 0em;
+  --text-headline-medium--font-weight: 400;
+
+  --text-headline-small: 1.75rem;
+  --text-headline-small--line-height: 2.4rem;
+  --text-headline-small--letter-spacing: 0em;
+  --text-headline-small--font-weight: 400;
+
+  /* Title */
+  --text-title-large: 1.4rem;
+  --text-title-large--line-height: 2rem;
+  --text-title-large--letter-spacing: 0em;
+  --text-title-large--font-weight: 400;
+
+  --text-title-medium: 1rem;
+  --text-title-medium--line-height: 1.6rem;
+  --text-title-medium--letter-spacing: 0.009rem;
+  --text-title-medium--font-weight: 500;
+
+  --text-title-small: 0.875rem;
+  --text-title-small--line-height: 1.4rem;
+  --text-title-small--letter-spacing: 0.006rem;
+  --text-title-small--font-weight: 500;
+
+  /* Body */
+  --text-body-large: 1rem;
+  --text-body-large--line-height: 1.6rem;
+  --text-body-large--letter-spacing: 0.031rem;
+  --text-body-large--font-weight: 400;
+
+  --text-body-medium: 0.875rem;
+  --text-body-medium--line-height: 1.4rem;
+  --text-body-medium--letter-spacing: 0.022rem;
+  --text-body-medium--font-weight: 400;
+
+  --text-body-small: 0.75rem;
+  --text-body-small--line-height: 1.2rem;
+  --text-body-small--letter-spacing: 0.018rem;
+  --text-body-small--font-weight: 400;
+
+  /* Label */
+  --text-label-large: 0.875rem;
+  --text-label-large--line-height: 1.2rem;
+  --text-label-large--letter-spacing: 0.012rem;
+  --text-label-large--font-weight: 500;
+
+  --text-label-medium: 0.75rem;
+  --text-label-medium--line-height: 1rem;
+  --text-label-medium--letter-spacing: 0.016rem;
+  --text-label-medium--font-weight: 500;
+
+  --text-label-small: 0.688rem;
+  --text-label-small--line-height: 0.8rem;
+  --text-label-small--letter-spacing: 0.012rem;
+  --text-label-small--font-weight: 500;
+}
+
+@custom-variant dark (&:where(.dark, .dark *));
