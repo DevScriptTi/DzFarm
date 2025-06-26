@@ -1,115 +1,67 @@
-'use client';
+"use client";
+import dynamic from "next/dynamic";
+import { useState } from "react";
 
-import { useState, useRef, useEffect, useCallback } from 'react';
-import { useRouter } from 'next/navigation';
-import { Html5Qrcode } from 'html5-qrcode';
-import { useLocale } from 'next-intl';
+const QrScanner = dynamic(() => import("./QrCode"), {
+  ssr: false,
+  loading: () => (
+    <div className="flex items-center justify-center h-64">
+      <p>Loading scanner...</p>
+    </div>
+  )
+});
 
-export default function QRScannerPage() {
-    const [scanning, setScanning] = useState(false);
-    const [error, setError] = useState<string | null>(null);
-    const router = useRouter();
-    const scannerRef = useRef<Html5Qrcode | null>(null);
-    const locale = useLocale()
-    // Start scanning only after the DOM element is rendered
-    useEffect(() => {
-        if (scanning) {
-            if (!scannerRef.current) {
-                scannerRef.current = new Html5Qrcode('qr-reader');
-            }
-            scannerRef.current.start(
-                { facingMode: 'environment' },
-                {
-                    fps: 10,
-                    qrbox: 250,
-                },
-                (decodedText: string) => {
-                    const match = decodedText.match(/(\d+)$/);
-                    if (match) {
-                        scannerRef.current?.stop();
-                        setScanning(false);
-                        router.push(`${locale}/farmers/animals/view/${match[1]}`);
-                    }
-                },
-                () => { }
-            ).catch(() => {
-                setError('Error accessing camera');
-                setScanning(false);
-            });
-        }
-        // Cleanup on unmount or when scanning stops
-        return () => {
-            if (scannerRef.current && scanning) {
-                scannerRef.current.stop().catch(() => { });
-            }
-        };
-    }, [scanning, router]);
+export default function JoinPage() {
+  const [result, setResult] = useState("");
+  const [scanStatus, setScanStatus] = useState("Ready to scan");
 
-    const startScan = useCallback(() => {
-        setError(null);
-        setScanning(true);
-    }, []);
+  const handleSuccess = (data: string) => {
+    setResult(data);
+    setScanStatus("Scan successful!");
+    console.log("QR Data:", data);
+    // Add your processing logic here
+  };
 
-    const stopScan = useCallback(() => {
-        setScanning(false);
-        scannerRef.current?.stop().catch(() => { });
-    }, []);
+  const handleError = (error: string) => {
+    if (!error.includes("NotFoundException")) {
+      setScanStatus(`Error: ${error}`);
+    }
+  };
 
-    return (
-        <div className="flex flex-col items-center justify-center min-h-[60vh]  p-6 rounded-lg shadow-md">
-            <h1
-                className="mb-6 text-[var(--color-primary)]"
-                style={{
-                    fontSize: 'var(--text-headline-large)',
-                    fontWeight: 'var(--text-headline-large--font-weight)',
-                }}
-            >
-                Scan Sheep QR Code
-            </h1>
-            {scanning && (
-                <div className="mb-4 w-full max-w-xs rounded-lg overflow-hidden border border-[var(--color-outline)] bg-[var(--color-surface-container)]">
-                    <div id="qr-reader" style={{ width: '100%' }} />
-                </div>
-            )}
-            {error && (
-                <div className="mb-2 text-[var(--color-error)]" style={{ fontSize: 'var(--text-body-medium)' }}>
-                    {error}
-                </div>
-            )}
-            <div className="flex gap-4 mb-6">
-                <button
-                    className="px-6 py-2 rounded bg-[var(--color-primary)] text-[var(--color-on-primary)] font-medium shadow transition hover:bg-[var(--color-primary-container)] hover:text-[var(--color-on-primary-container)]"
-                    style={{
-                        fontSize: 'var(--text-title-medium)',
-                        fontWeight: 'var(--text-title-medium--font-weight)',
-                    }}
-                    onClick={startScan}
-                    disabled={scanning}
-                >
-                    Start
-                </button>
-                <button
-                    className="px-6 py-2 rounded bg-[var(--color-error)] text-[var(--color-on-error)] font-medium shadow transition hover:bg-[var(--color-error-container)] hover:text-[var(--color-on-error-container)]"
-                    style={{
-                        fontSize: 'var(--text-title-medium)',
-                        fontWeight: 'var(--text-title-medium--font-weight)',
-                    }}
-                    onClick={stopScan}
-                    disabled={!scanning}
-                >
-                    Stop
-                </button>
-            </div>
-            <a
-                href={`${locale}/farmers/animals/`}
-                className="text-[var(--color-primary)] underline hover:text-[var(--color-primary-container)]"
-                style={{
-                    fontSize: 'var(--text-body-large)',
-                    fontWeight: 'var(--text-body-large--font-weight)',
-                }}
-            >
-                ← Back to Animals
-            </a>
+  return (
+    <div className="flex flex-col items-center justify-center min-h-[calc(100vh-4rem)] p-4">
+      <h1 className="text-2xl font-bold mb-6">QR Code Scanner</h1>
+      
+      <div className="w-full max-w-md bg-white rounded-lg shadow-lg overflow-hidden">
+        <QrScanner 
+          onScanSuccess={handleSuccess}
+          onScanError={handleError}
+        />
+      </div>
+
+      <div className="mt-6 w-full max-w-md space-y-4">
+        <div className={`p-3 rounded-lg ${
+          result ? "bg-green-100 text-green-800" : "bg-blue-100 text-blue-800"
+        }`}>
+          Status: {scanStatus}
         </div>
-    );
+        
+        {result && (
+          <div className="bg-gray-50 p-4 rounded-lg break-all">
+            <h2 className="font-semibold mb-2">Scanned Data:</h2>
+            <p>{result}</p>
+            <button
+              onClick={() => {
+                setResult("");
+                setScanStatus("Ready to scan again");
+              }}
+              className="mt-3 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
+            >
+              Scan Another Code
+            </button>
+          </div>
+        )}
+      </div>
+    </div>
+  );
 }
