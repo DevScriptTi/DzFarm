@@ -1,11 +1,20 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    remotePatterns: [
+    // remotePatterns: [
+    //   {
+    //     protocol: 'http',
+    //     hostname: '127.0.0.1',
+    //     port: '8000',
+    //     pathname: '/storage/qrcodes/**',
+    //   },
+    //   // You can add more patterns if needed
+    // ],
+     remotePatterns: [
       {
-        protocol: 'http',
-        hostname: '127.0.0.1',
-        port: '8000',
+        protocol: 'https',
+        hostname: 'https://farm-back-end-main-lmyfff.laravel.cloud/',
+        // port: '8000',
         pathname: '/storage/qrcodes/**',
       },
       // You can add more patterns if needed
