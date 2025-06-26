@@ -5,7 +5,7 @@ import { Animal, AnimalType } from '../../type/animal/animal';
 
 interface GetAnimalResponse {
     message: string;
-    animal: Animal;
+    data: Animal;
 }
 
 export async function getAnimal(id: number): Promise<Animal> {
@@ -13,9 +13,9 @@ export async function getAnimal(id: number): Promise<Animal> {
         const { data } = await axiosInstance.get<GetAnimalResponse>(
             `/animals/${id}`
         )
-        return data.animal
+        return data.data
     } catch (error: unknown) {
-        console.error('Error fetching animal:', error)
+        // console.error('Error fetching animal:', error.response.data)
         throw error
     }
 }
