@@ -3,6 +3,7 @@ import { Suspense } from "react";
 import AnimalViewSkeleton from "./Animal/AnimalUpdateSkeleton";
 import AnimalViewHead from "./viewComponents/ViewComponents";
 import { AnimalCardItem } from "../animals/AnimalCard";
+import AnimalVaccines from "./animalVaccines/AnimalVaccines";
 
 export default async function ViewAnimal({ animal }: { animal: number }) {
     return (
@@ -15,10 +16,10 @@ export default async function ViewAnimal({ animal }: { animal: number }) {
 async function ViewAnimalContent({ animal }: { animal: number }) {
     const animal_ = await getAnimal(Number(animal));
     console.log("animal number  : " + Number(animal))
-    console.log("animal  : " + process.env.NEXT_PUBLIC_Image_BACKEND_URL+'/'+animal_.qr_code?.path)
+    console.log("animal  : " + process.env.NEXT_PUBLIC_Image_BACKEND_URL + '/' + animal_.qr_code?.path)
     return (
         <>
-            <AnimalViewHead qrCode={animal_.qr_code?.path ? `${process.env.NEXT_PUBLIC_Image_BACKEND_URL}/${animal_.qr_code?.path}`: null} slug={animal_.slug} />
+            <AnimalViewHead qrCode={animal_.qr_code?.path ? `${process.env.NEXT_PUBLIC_Image_BACKEND_URL}/${animal_.qr_code?.path}` : null} slug={animal_.slug} />
             <div
                 className="flex flex-col gap-2"
             >
@@ -38,9 +39,8 @@ async function ViewAnimalContent({ animal }: { animal: number }) {
                     <span>Vaccines</span>
                     <hr className=" h-0.5 grow bg-on-surface dark:bg-dark-on-surface" />
                 </div>
-                <div className="my-3 flex gap-2 items-center">
-                    <span>Illness</span>
-                    <hr className=" h-0.5 grow bg-on-surface dark:bg-dark-on-surface" />
+                <div>
+                    <AnimalVaccines />
                 </div>
             </div>
         </>

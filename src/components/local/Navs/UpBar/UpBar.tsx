@@ -5,6 +5,7 @@ import { UpBarItem } from "./UpBarItem"
 import ToggleUpBar from "./ToggelUpBar";
 import { isAuth } from "@/lib/server/tools/auth";
 import Logout from "./logout";
+import Image from "next/image";
 
 export default async function UpBar({ children }: { children: React.ReactNode }) {
     const locale = await getLocale();
@@ -13,7 +14,9 @@ export default async function UpBar({ children }: { children: React.ReactNode })
         <header
             className="sticky z-10  h-header w-full px-2 md:px-4 lg:px-8 flex items-center"
         >
-            <UpBarItem href={`/${locale}`} className="text-on-surface dark:text-dark-on-surface font-normal">Logo</UpBarItem>
+            <UpBarItem href={`/${locale}`} >
+                <Image src={'/logo.png'} alt="logo" className="w-24" width={500} height={500}/>
+            </UpBarItem>
             <Mode />
             <Lang />
             <nav id="NavBarItemsToggled" className="hidden lg:grow

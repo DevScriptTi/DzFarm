@@ -22,7 +22,7 @@ export default async function layout({ children }: { children: React.ReactNode }
             </UpBar>
             <div className="flex">
                 <Navigation>
-                    <Profile role="admin" link={`#`} photo="/landing1.png">Admin</Profile>
+                    <Profile role="admin" link={`#`} photo="/logo.png" >Admin</Profile>
                     <NavGroup title="Main" >
                         <NavItem icon={<Home size={18} />} link={`/${locale}/dashboard`}>
                             Home

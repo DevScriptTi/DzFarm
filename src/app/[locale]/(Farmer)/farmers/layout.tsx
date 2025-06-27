@@ -17,7 +17,7 @@ export default async function layout({ children }: { children: React.ReactNode }
                     <NavBarItem link={`/${locale}`} >Leave</NavBarItem>
                     <Mode />
                     <NavBarItem link={`/${locale}/farmers/animals/scan`} >
-                        <div className="flex items-center">
+                        <div className="flex items-center h-full">
                             <ScanQrCode />
                         </div>
                     </NavBarItem>
